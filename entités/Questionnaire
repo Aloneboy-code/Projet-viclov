@@ -1,0 +1,64 @@
+{
+  "name": "Quiz",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "Quiz title"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "anatomie",
+        "physiologie",
+        "pharmacologie",
+        "pathologie",
+        "biochimie",
+        "microbiologie",
+        "neurologie",
+        "cardiologie",
+        "general"
+      ],
+      "description": "Quiz category"
+    },
+    "difficulty": {
+      "type": "string",
+      "enum": [
+        "debutant",
+        "intermediaire",
+        "avance"
+      ]
+    },
+    "questions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "question": {
+            "type": "string"
+          },
+          "options": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "correct_answer": {
+            "type": "number"
+          },
+          "explanation": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "description": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "title",
+    "category",
+    "questions"
+  ]
+}

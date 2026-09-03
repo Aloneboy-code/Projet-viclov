@@ -1,0 +1,21 @@
+{
+  "appId": "com.viclov.app",
+  "appName": "VicLov",
+  "webDir": "dist",
+  "bundledWebRuntime": false,
+  "server": {
+    "androidScheme": "https"
+  },
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 2000,
+      "launchAutoHide": true,
+      "backgroundColor": "#005F73",
+      "androidSplashResourceName": "splash",
+      "androidScaleType": "CENTER_CROP",
+      "androidSplashFullScreen": true,
+      "iosSplashResourceName": "splash",
+      "iosScaleType": "SCREEN_FILL"
+    }
+  }
+}

@@ -1,0 +1,71 @@
+{
+  "name": "MedicalTerm",
+  "type": "object",
+  "properties": {
+    "term": {
+      "type": "string",
+      "description": "Medical term"
+    },
+    "definition": {
+      "type": "string",
+      "description": "Full definition"
+    },
+    "etymology": {
+      "type": "string",
+      "description": "Word origin/etymology"
+    },
+    "organ": {
+      "type": "string",
+      "description": "Related organ"
+    },
+    "specialty": {
+      "type": "string",
+      "description": "Medical specialty"
+    },
+    "typical_pathologies": {
+      "type": "string",
+      "description": "Typical associated pathologies"
+    },
+    "associated_exams": {
+      "type": "string",
+      "description": "Associated medical exams"
+    },
+    "treatments": {
+      "type": "string",
+      "description": "Related treatments"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "anatomie",
+        "physiologie",
+        "pathologie",
+        "pharmacologie",
+        "microbiologie",
+        "biochimie",
+        "chirurgie",
+        "radiologie",
+        "genetique",
+        "immunologie",
+        "neurologie",
+        "cardiologie",
+        "pneumologie",
+        "gastro_enterologie",
+        "nephrologie",
+        "hematologie",
+        "dermatologie",
+        "ophtalmologie",
+        "orl",
+        "gynecologie",
+        "pediatrie",
+        "psychiatrie",
+        "general"
+      ],
+      "description": "Term category"
+    }
+  },
+  "required": [
+    "term",
+    "definition"
+  ]
+}

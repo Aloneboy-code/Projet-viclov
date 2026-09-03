@@ -1,0 +1,71 @@
+{
+  "name": "Medication",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Medication name"
+    },
+    "class": {
+      "type": "string",
+      "description": "Pharmacological class"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "analgesique",
+        "antibiotique",
+        "antiviral",
+        "antifongique",
+        "anti_inflammatoire",
+        "cardiovasculaire",
+        "neurologique",
+        "endocrinien",
+        "gastro_intestinal",
+        "respiratoire",
+        "dermatologique",
+        "oncologique",
+        "immunologique",
+        "hematologique",
+        "psychiatrique",
+        "urologique",
+        "ophtalmologique",
+        "autre"
+      ],
+      "description": "Medication category"
+    },
+    "mechanism": {
+      "type": "string",
+      "description": "Mechanism of action"
+    },
+    "indications": {
+      "type": "string",
+      "description": "Main indications"
+    },
+    "immediate_effects": {
+      "type": "string",
+      "description": "Immediate effects"
+    },
+    "side_effects": {
+      "type": "string",
+      "description": "Side effects"
+    },
+    "contraindications": {
+      "type": "string",
+      "description": "Contraindications"
+    },
+    "dosage": {
+      "type": "string",
+      "description": "Usual dosage"
+    },
+    "interactions": {
+      "type": "string",
+      "description": "Drug interactions"
+    }
+  },
+  "required": [
+    "name",
+    "class",
+    "category"
+  ]
+}

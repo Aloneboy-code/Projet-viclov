@@ -1,0 +1,57 @@
+{
+  "name": "Course",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "Course title"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "anatomie",
+        "physiologie",
+        "biochimie",
+        "microbiologie",
+        "pathologie",
+        "pharmacologie",
+        "histologie",
+        "embryologie",
+        "neurologie",
+        "cardiologie"
+      ],
+      "description": "Course category"
+    },
+    "description": {
+      "type": "string",
+      "description": "Course description"
+    },
+    "content": {
+      "type": "string",
+      "description": "Full course content in markdown"
+    },
+    "video_url": {
+      "type": "string",
+      "description": "Video URL"
+    },
+    "difficulty": {
+      "type": "string",
+      "enum": [
+        "debutant",
+        "intermediaire",
+        "avance"
+      ]
+    },
+    "order": {
+      "type": "number",
+      "description": "Display order"
+    },
+    "image_url": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "title",
+    "category"
+  ]
+}

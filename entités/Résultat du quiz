@@ -1,0 +1,54 @@
+{
+  "name": "QuizResult",
+  "type": "object",
+  "properties": {
+    "quiz_id": {
+      "type": "string"
+    },
+    "score": {
+      "type": "number"
+    },
+    "total_questions": {
+      "type": "number"
+    },
+    "answers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "question_index": {
+            "type": "number"
+          },
+          "selected": {
+            "type": "number"
+          },
+          "correct": {
+            "type": "boolean"
+          }
+        }
+      }
+    },
+    "completed_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "quiz_id",
+    "score"
+  ],
+  "rls": {
+    "create": {
+      "created_by": "{{user.email}}"
+    },
+    "read": {
+      "created_by": "{{user.email}}"
+    },
+    "update": {
+      "created_by": "{{user.email}}"
+    },
+    "delete": {
+      "created_by": "{{user.email}}"
+    }
+  }
+}
