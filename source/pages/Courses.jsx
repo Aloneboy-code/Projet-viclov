@@ -33,16 +33,26 @@ export default function Courses() {
 
   const CACHE_KEY = "viclov_courses_cache";
 
-  const { data: courses = [], isLoading } = useQuery({
+  const { data: courses = [], isLoading, error } = useQuery({
     queryKey: ["courses"],
     queryFn: async () => {
       try {
         const list = await db.entities.Course.list("order", 100);
-        localStorage.setItem(CACHE_KEY, JSON.stringify(list));
+        try {
+          localStorage.setItem(CACHE_KEY, JSON.stringify(list));
+        } catch (storageError) {
+          console.error('⚠️ Impossible de sauvegarder le cache:', storageError);
+        }
         return list;
-      } catch {
-        const cached = localStorage.getItem(CACHE_KEY);
-        return cached ? JSON.parse(cached) : [];
+      } catch (err) {
+        console.error('❌ Erreur lors du chargement des cours:', err);
+        try {
+          const cached = localStorage.getItem(CACHE_KEY);
+          return cached ? JSON.parse(cached) : [];
+        } catch (parseError) {
+          console.error('❌ Erreur lors de la lecture du cache:', parseError);
+          return [];
+        }
       }
     },
   });
@@ -55,6 +65,15 @@ export default function Courses() {
     const matchCat = selectedCategory === "all" || c.category === selectedCategory;
     return matchSearch && matchCat;
   });
+
+  if (error) {
+    return (
+      <div className="min-h-screen flex flex-col items-center justify-center gap-4 px-6">
+        <p className="text-red-600 font-medium">❌ Erreur lors du chargement des cours</p>
+        <p className="text-muted-foreground text-sm">{error.message}</p>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen">
