@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { motion } from "framer-motion";
 import { useFavorites } from "@/hooks/useFavorites";
 import FavoriteButton from "@/components/courses/FavoriteButton";
+import { db } from "@/lib/mockData";
 
 const categoryLabels = {
   anatomie: "Anatomie", physiologie: "Physiologie", biochimie: "Biochimie",
