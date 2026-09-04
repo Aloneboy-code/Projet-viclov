@@ -10,22 +10,35 @@ export const useAuth = () => {
   return context;
 };
 
-export const AuthProvider = ({ children }) => {
-  const [email, setEmail] = useState(null);
-  const [profile, setProfile] = useState(null);
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-
-  useEffect(() => {
-    // Charger les données depuis localStorage au démarrage
+// Initialize auth state synchronously to prevent flash
+const getInitialAuthState = () => {
+  try {
     const storedEmail = localStorage.getItem('viclov_email');
     const storedProfile = localStorage.getItem('viclov_profile');
     
     if (storedEmail && storedProfile) {
-      setEmail(storedEmail);
-      setProfile(storedProfile);
-      setIsAuthenticated(true);
+      return {
+        email: storedEmail,
+        profile: storedProfile,
+        isAuthenticated: true
+      };
     }
-  }, []);
+  } catch (e) {
+    console.error('Failed to read auth state from localStorage:', e);
+  }
+  
+  return {
+    email: null,
+    profile: null,
+    isAuthenticated: false
+  };
+};
+
+export const AuthProvider = ({ children }) => {
+  const initialState = getInitialAuthState();
+  const [email, setEmail] = useState(initialState.email);
+  const [profile, setProfile] = useState(initialState.profile);
+  const [isAuthenticated, setIsAuthenticated] = useState(initialState.isAuthenticated);
 
   const setEmailAndProfile = (newEmail, newProfile) => {
     setEmail(newEmail);
