@@ -36,7 +36,7 @@ const ProtectedRoute = ({ children, allowedProfiles }) => {
   const { isAuthenticated, profile } = useAuth();
   
   if (!isAuthenticated) {
-    return <Navigate to="/auth" replace />;
+    return <Navigate to="/login" replace />;
   }
   
   if (allowedProfiles && !allowedProfiles.includes(profile)) {
@@ -49,8 +49,7 @@ const ProtectedRoute = ({ children, allowedProfiles }) => {
 const AppContent = () => {
   const { isAuthenticated, profile } = useAuth();
   const { isLoading, loadingMessage } = useLoading();
-  const [authStep, setAuthStep] = useState('email'); // 'email' | 'profile' | 'done'
-  const [userEmail, setUserEmail] = useState('');
+  const [authStep, setAuthStep] = useState('email');
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -59,14 +58,7 @@ const AppContent = () => {
   }, [isAuthenticated]);
 
   const handleEmailSubmit = (email) => {
-    setUserEmail(email);
     setAuthStep('profile');
-  };
-
-  const handleProfileSelect = (selectedProfile) => {
-    const { setEmailAndProfile } = useAuth();
-    setEmailAndProfile(userEmail, selectedProfile);
-    setAuthStep('done');
   };
 
   if (authStep === 'email') {
@@ -74,7 +66,7 @@ const AppContent = () => {
   }
 
   if (authStep === 'profile') {
-    return <ProfileSelection email={userEmail} />;
+    return <ProfileSelection />;
   }
 
   return (
@@ -135,6 +127,7 @@ const AppContent = () => {
             </ProtectedRoute>
           } />
         </Route>
+        <Route path="/login" element={<AuthScreen onComplete={handleEmailSubmit} />} />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
     </>
