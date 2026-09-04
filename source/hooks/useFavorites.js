@@ -2,12 +2,21 @@ import { useState, useEffect } from 'react';
 
 export function useFavorites() {
   const [favorites, setFavorites] = useState(() => {
-    const stored = localStorage.getItem('viclov_favorites');
-    return stored ? JSON.parse(stored) : [];
+    try {
+      const stored = localStorage.getItem('viclov_favorites');
+      return stored ? JSON.parse(stored) : [];
+    } catch (error) {
+      console.error('❌ Erreur lors du chargement des favoris:', error);
+      return [];
+    }
   });
 
   useEffect(() => {
-    localStorage.setItem('viclov_favorites', JSON.stringify(favorites));
+    try {
+      localStorage.setItem('viclov_favorites', JSON.stringify(favorites));
+    } catch (error) {
+      console.error('❌ Erreur lors de la sauvegarde des favoris:', error);
+    }
   }, [favorites]);
 
   const toggle = (id) => {

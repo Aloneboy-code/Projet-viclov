@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-
+import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, CheckCircle2, XCircle, ArrowRight, Trophy, RotateCcw } from "lucide-react";
@@ -8,7 +8,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { db } from "@/lib/mockData";
 
 export default function QuizPlay() {
-  const quizId = window.location.pathname.split("/").pop();
+  const { id: quizId } = useParams();
   const [currentQ, setCurrentQ] = useState(0);
   const [selected, setSelected] = useState(null);
   const [showAnswer, setShowAnswer] = useState(false);
@@ -125,7 +125,6 @@ export default function QuizPlay() {
           <span className="text-sm text-muted-foreground font-medium">{currentQ + 1} / {questions.length}</span>
         </div>
 
-        {/* Progress bar */}
         <div className="h-2 bg-muted rounded-full mb-8">
           <motion.div
             className="h-full bg-primary rounded-full"
